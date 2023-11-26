@@ -1,0 +1,57 @@
+.hero {
+
+  .hero__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid grey;
+
+    @include vp-1440 {
+      padding-top: 20px;
+      padding-bottom: 20px;
+      border: none;
+    }
+
+  }
+
+  img {
+    width: 120px;
+    height: 28px;
+    object-fit: contain;
+
+    @include vp-768 {
+      width: 220px;
+      height: 48px;
+    }
+
+    @include vp-1440 {
+      width: 300px;
+      height: 68px;
+    }
+  }
+
+  a {
+    font-size: 20px;
+    line-height: 20px;
+    font-weight: 700;
+    padding-top: 4px;
+
+    @include vp-768 {
+      font-size: 35px;
+      line-height: 35px;
+    }
+
+    @include vp-1440 {
+      padding-top: 14px;
+      font-size: 45px;
+      line-height: 45px;
+      font-weight: 700;
+      background: linear-gradient(128deg, #D10a42 0%, #0041ca 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+}
