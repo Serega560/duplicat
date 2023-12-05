@@ -1,57 +1,320 @@
 .hero {
+  padding-top: 20px;
+  padding-bottom: 20px;
 
-  .hero__container {
+  @include vp-1440 {
+    background-color: $color-third;
+    padding-top: 70px;
+    padding-bottom: 70px;
+  }
+
+  .swiper-container {
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .swiper-wrapper {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid grey;
+    padding-bottom: 0;
+  }
+
+  .swiper-slide {
+    padding: 20px;
+    border: 2px solid grey;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    width: 250px;
 
     @include vp-1440 {
-      padding-top: 20px;
-      padding-bottom: 20px;
       border: none;
     }
 
+    .hero__block {
+      display: flex;
+      flex-direction: column;
+
+      @include vp-1440 {
+        flex-wrap: wrap;
+        flex-direction: row-reverse;
+        column-gap: 70px;
+        position: relative;
+      }
+    }
+
+    .hero__title-slide {
+      order: -2;
+
+      @include vp-1440 {
+        order: 2;
+        position: absolute;
+        top: 170px;
+      }
+    }
+
+    .hero__info {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      order: 1;
+
+      @include vp-1440 {
+        width: 240px;
+      }
+
+      p {
+        text-align: center;
+        text-decoration: line-through;
+        margin-bottom: 0;
+
+        @include vp-1440 {
+          font-size: 20px;
+          margin-bottom: 8px;
+          order: 3;
+        }
+      }
+    }
+
+    picture {
+      order: -1;
+
+      @include vp-1440 {
+        order: 1;
+      }
+    }
+
+    p {
+      margin: 0;
+      text-align: center;
+      margin-bottom: 20px;
+
+      @include vp-1440 {
+        margin-bottom: 20px;
+        font-size: 30px;
+      }
+    }
+
+    img {
+      margin-bottom: 20px;
+      width: 290px;
+      height: 290px;
+      object-fit: cover;
+      border-radius: 5%;
+      outline: 2px solid $color-primary;
+      outline-offset: 5px;
+      order: -3;
+
+      @include vp-768 {
+        width: 560px;
+        height: 500px;
+        box-shadow: 20px 20px 10px grey;
+        outline: none;
+      }
+
+      @include vp-1440 {
+        width: 700px;
+        height: 560px;
+        border-radius: 5%;
+        margin-bottom: 30px;
+        box-shadow: 30px 30px 10px grey;
+      }
+    }
+
+    span {
+      font-size: 45px;
+      line-height: 45px;
+      margin-bottom: 20px;
+    }
   }
 
-  img {
-    width: 120px;
-    height: 28px;
-    object-fit: contain;
-
-    @include vp-768 {
-      width: 220px;
-      height: 48px;
-    }
-
+  .hero__title-slide--last {
     @include vp-1440 {
-      width: 300px;
-      height: 68px;
+      right: 27px;
     }
+  }
+
+  svg {
+    color: black;
   }
 
   a {
-    font-size: 20px;
-    line-height: 20px;
-    font-weight: 700;
-    padding-top: 4px;
+    @include vp-1440 {
+      order: 4;
+    }
+  }
+}
+
+
+// Кнопки
+
+.swiper-slider__arrow--prev {
+  position: absolute;
+  border: none;
+  width: 16px;
+  height: 32px;
+  top: 380px;
+  left: 15px;
+  z-index: 11;
+  cursor: pointer;
+  outline: 0;
+  background: transparent;
+
+  @include vp-768 {
+    top: 345px;
+    left: 12px;
+  }
+
+  @include vp-1440 {
+    left: 25px;
+    top: 300px;
+  }
+
+  svg {
+    width: 12px;
+    height: 19px;
+    color: #102654;
 
     @include vp-768 {
-      font-size: 35px;
-      line-height: 35px;
+      width: 16px;
+      height: 32px;
+    }
+  }
+
+  @include hover-focus {
+
+    @include vp-768 {
+
+      @media (hover: hover) {
+        &:hover:not(.focus-visible) {
+          &::before {
+            position: absolute;
+            content: "";
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: 1px solid #102654;
+            top: -10px;
+            left: -10px;
+          }
+        }
+
+        &.focus-visible:focus {
+          outline: none;
+        }
+      }
+
+      @include active {
+        &:active:not(.focus-visible) {
+          svg {
+            color: $color-default-white;
+            z-index: 1;
+          }
+
+          &:before {
+            background-color: #102654;
+            z-index: -1;
+          }
+        }
+      }
     }
 
-    @include vp-1440 {
-      padding-top: 14px;
-      font-size: 45px;
-      line-height: 45px;
-      font-weight: 700;
-      background: linear-gradient(128deg, #D10a42 0%, #0041ca 100%);
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    &[disabled] {
+      svg {
+        opacity: 0.3;
+      }
+
+      background-color: transparent;
+      pointer-events: none;
+    }
+
+  }
+
+}
+
+.swiper-slider__arrow--next {
+  position: absolute;
+  width: 16px;
+  height: 32px;
+  top: 380px;
+  right: 15px;
+  z-index: 11;
+  cursor: pointer;
+  outline: 0;
+  background: transparent;
+  transform: rotate(180deg);
+  border: none;
+
+  @include vp-768 {
+    top: 345px;
+    right: 12px;
+  }
+
+  @include vp-1440 {
+    right: 25px;
+    top: 300px;
+  }
+
+  svg {
+    width: 12px;
+    height: 19px;
+    color: $color-default-black;
+
+    @include vp-768 {
+      width: 16px;
+      height: 32px;
+    }
+  }
+
+  @include hover-focus {
+
+    @include vp-768 {
+
+      @media (hover: hover) {
+        &:hover:not(.focus-visible) {
+          &::before {
+            position: absolute;
+            content: "";
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: 1px solid #102654;
+            top: -10px;
+            left: -10px;
+          }
+        }
+
+        &.focus-visible:focus {
+          outline: none;
+        }
+      }
+
+      @include active {
+        &:active:not(.focus-visible) {
+          svg {
+            color: $color-default-white;
+            z-index: 1;
+          }
+
+          &:before {
+            background-color: #102654;
+            z-index: -1;
+          }
+        }
+      }
+    }
+
+    &[disabled] {
+      svg {
+        opacity: 0.3;
+      }
+
+      background-color: transparent;
+      pointer-events: none;
     }
   }
 }

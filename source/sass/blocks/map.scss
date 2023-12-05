@@ -1,0 +1,29 @@
+.map {
+  width: 100%;
+  height: 500px;
+
+  @include vp-1440 {
+    position: relative;
+  }
+
+  p {
+    background-color: #ececec;
+    border: 2px solid $color-primary;
+    outline: 2px solid orangered;
+    outline-offset: 3px;
+    padding: 25px;
+    z-index: 1;
+    margin: 0 15px 20px;
+
+    @include vp-768 {
+      margin: 0 45px 45px;
+    }
+
+    @include vp-1440 {
+      position: absolute;
+      top: 100px;
+      left: 100px;
+      width: 300px;
+    }
+  }
+}

@@ -1,0 +1,215 @@
+.faq {
+  padding: 40px 0;
+  background-color: #f8f9fc;
+
+  @include vp-1440 {
+    padding: 60px 0;
+  }
+
+  h2 {
+    margin-bottom: 30px;
+    font-size: 28px;
+    color: $color-primary;
+
+    @include vp-1440 {
+      margin-bottom: 70px;
+      font-size: 48px;
+    }
+  }
+
+  .accordion {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background-color: #F8F9FC;
+
+    &__element {
+      border-top: 2px solid rgba(28, 51, 116, 0.2);
+      position: relative;
+
+      @include vp-768 {
+        width: 100%;
+        border: none;
+
+        &:after {
+          position: absolute;
+          content: "";
+          width: 100%;
+          height: 1px;
+          background: rgba(28, 51, 116, 0.2);
+          top: 0;
+          left: 0;
+        }
+      }
+
+      &--last {
+        border-bottom: 1px solid rgba(28, 51, 116, 0.2);
+      }
+    }
+
+    &__button {
+      cursor: pointer;
+      border: none;
+      padding: 0;
+      padding-top: 22px;
+      padding-bottom: 25px;
+      width: 100%;
+      background-color: #F8F9FC;
+
+      @include vp-1440 {
+        padding-top: 32px;
+        padding-bottom: 32px;
+      }
+
+      &:before {
+        position: absolute;
+        content: "";
+        width: 14px;
+        height: 1px;
+        background-color: #102654;
+        top: 40px;
+        right: 8px;
+        cursor: pointer;
+        z-index: 1;
+
+        @include vp-1440 {
+          right: 30px;
+          width: 20px;
+          top: 43px;
+        }
+      }
+
+      &:after {
+        position: absolute;
+        content: "";
+        width: 14px;
+        height: 1px;
+        top: 40px;
+        right: 8px;
+        cursor: pointer;
+        background-color: #102654;
+        z-index: 1;
+        transform: rotate(90deg);
+
+        @include vp-1440 {
+          right: 30px;
+          width: 20px;
+          top: 43px;
+        }
+      }
+
+      @include hover-focus {
+        @media (hover: hover) {
+          &:hover:not(.focus-visible) {
+            span:after {
+              background-color: #102654;
+            }
+
+            &:before {
+              background-color: $color-default-white;
+            }
+
+            &:after {
+              background-color: $color-default-white;
+            }
+          }
+        }
+
+        &.focus-visible:focus,
+        &:focus-visible {
+          &:before {
+            background-color: $color-default-white;
+          }
+
+          &:after {
+            background-color: $color-default-white;
+          }
+        }
+      }
+
+      span {
+        display: flex;
+        font-size: 20px;
+        line-height: 20px;
+        font-weight: 400;
+        color: $color-primary;
+        margin: 0;
+        text-align: left;
+        padding-right: 50px;
+
+        @include vp-1440 {
+          font-size: 24px;
+          line-height: 24px;
+          display: block;
+          padding-left: 20px;
+        }
+
+        &:after {
+          position: absolute;
+          content: "";
+          width: 30px;
+          height: 30px;
+          top: 25px;
+          right: 0;
+          border-radius: 50%;
+          z-index: 0;
+          border: 1px solid #102654;
+
+          @include vp-1440 {
+            right: 20px;
+            top: 22px;
+            width: 40px;
+            height: 40px;
+          }
+        }
+      }
+    }
+
+    &__content {
+      font-size: 18px;
+      line-height: 24px;
+      font-weight: 300;
+      color: #102654;
+      max-height: 0;
+      padding-right: 40px;
+      overflow: hidden;
+      transition: 0.5s;
+      margin-top: -22px;
+      margin-bottom: 22px;
+
+      h3{
+        font-weight: 400;
+        font-size: 22px;
+      }
+
+      ul {
+        margin: 0;
+        list-style: none;
+        padding: 0;
+      }
+
+      @include vp-1440 {
+        padding-left: 20px;
+        padding-right: 150px;
+      }
+    }
+  }
+
+  .accordion__element.is-active {
+    button {
+      &:after {
+        display: none;
+      }
+
+      &:before {
+        background-color: $color-default-white;
+      }
+
+      span {
+        &:after {
+          background-color: #102654;
+        }
+      }
+    }
+  }
+}
